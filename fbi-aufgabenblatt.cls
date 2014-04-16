@@ -84,7 +84,7 @@ Seite \thepage $\cdot$ \AufgabenblattTitel{} \Aufgabenblatt{} $\cdot$ \GruppeTit
 % Variablen fuer Seitenkopf: Setzen mit \renewcommand{\Variable}{Wert}
 \newcommand{\Vorlesung}{Grundlagen der Systemsoftware}
 \newcommand{\Vkurz}{GSS}
-\newcommand{\Semester}{SoSe 2011}
+\newcommand{\Semester}{SoSe 2014}
 \newcommand{\Ausgabedatum}{}
 \newcommand{\Abgabedatum}{}
 \newcommand{\Aufgabenblatt}{}
