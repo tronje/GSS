@@ -10,20 +10,83 @@
 \begin{document}
 
 \section{Allgmeine Aussagen zur IT-Sicherheit}
-
+    
 \subsection{Verteilte Systeme und Sicherheit}
-
+\begin{itemize}
+    \item Vorteile
+        \subitem Redundanz
+        \subitem Verfügbarkeit
+        \subitem Datenverlust
+    \item Nachteile
+        \subitem Mehr Angriffsvektoren (z.B Kommunikationswege)
+        \subitem Mehr Aufwand durch Schutz
+        \subitem Komplexer
+\end{itemize}
 \subsection{Ursachen}
-
+    Zeitmangel
+    Kompetenz
+    Sicherheitsbewusstsein
+    Geld
 \subsection{Angriffsformen}
-
+    
 \section{Schutzziele}
-
+\begin{itemize} 
+    \item a)
+        \subitem Verkehrsfulussanalyse
+        \subitem passive Beobachtung
+    \item b)
+        \subitem Man in the Middle
+            \subsubitem Verfügbarkeit
+            \subsubitem Integrität
+            \subsubitem Vertraulichkeit
+        \subitem Schutz:
+            \subsubitem VPN
+            \subsubitem SSl/TLS
+            \subsubitem automatisches Verbinden deaktivieren
+\end{itemize}
 \subsection{Abgrenzung I}
-
+\begin{itemize}
+    \item Anonymität
+        \subitem Identität kann nicht zurückverfolgt werden
+    \item Pseudonymität
+        \subitem Aktionen lassen sich verketten, Identität lässt sich zurückverfolgen 
+    \item Unbeobachtbarkeit
+        \subitem Es kann nicht ermittelt werden, dass ein Teilnehmer kommuniziert. 
+\end{itemize}
 \subsection{Abgrenzung II}
+\begin{itemize}
+    \item Vertraulichkeit
+        \subitem Nachrichten Inhalt kann nicht gelesen werden
+        \subitem Kryptographie
+    \item Verdecktheit
+        \subitem Existenz der Nachricht verborgen
+        \subitem Steganographie
+
+
+    \item Integrität
+        \subitem festellten einer Modifikation
+    \item Zurechenbarkeit
+        \subitem Uhrheber festellbar
+
+    \item Erreichbark keit
+        \subitem Auf das System kann zugegruffen werden
+    \item Verfügbarkeit
+        \subitem Dienste laufen zuverlässig
+\end{itemize}
 
 \subsection{Techniken}
+
+\begin{itemize}
+    \item Onion-Network (Tor)
+    \item Dummy-Nachrichten
+    \item Verschlüsselung
+    \item Steganographi
+    \item Hashes MAC
+    \item Signaturen
+    \item Redundanz/ Diversität
+    \item verschieden Implementierungen
+
+\end{itemize}
 
 \section{Angreifemodell}
 
@@ -46,19 +109,46 @@ Dies ist außerdem ein wichtiges Kriterium für die Schutzdauer eines Schutzmechan
 
 
 \subsection{Praxisbeispiel}
-
+\begin{itemize}
+    \item Rolle:
+        \subitem Außenstehender
+    \item Verbreitung:
+    \item Verhalten:
+        \subitem Beobachtend
+    \item Rechenkapazität
+\end{itemize}
 \section{Passwortsicherheit}
 
 \subsection{Einfaches Hash-Verfahren}
+    Sicherheit der Benutzerpasswörter, trotz komprimitierung
+    Passwort varibel lang, Hash immer gleich lang, effektievere Passwortverwaltung
 
+    Kollisionsresistenz
+    sollte nur schwer Invertriebar sein (Einwegfunktion)
 \subsection{Brute-Force-Angriff}
-
+   $62^8 + 62+7 +62^6 + 62^5 .... $
 \subsection{Time-Memory-Trade-Off}
+\begin{itemize}
+    \item Bruteforce
+        \subitem kein Speicherbedarf
+        \subitem hoher linearer Zeitaufwand
 
+    \item Alternative: Datenbank
+        \subitem Zeitaufwand gering
+        \subitem viel Speicherbedarf
+
+    \item Kompromiss: Rainbow Table
+\end{itemize}
+        
 \subsection{Salting}
-
+\begin{itemize}
+    \item Schutz gegen Rainbow Tables
+    \item h(Salt|Password)
+    \item für jedes Passwort neuer Salt
+    \item Speicherung Hash + Salt
+\end{itemize}
 \subsection{Dictionary-Attack}
-
+    
 
 %\input{betriebssysteme}
 
