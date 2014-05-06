@@ -1,0 +1,94 @@
+\documentclass{fbi-aufgabenblatt}
+
+% Folgende Angaben bitte Anpassen !!!
+
+\renewcommand{\Aufgabenblatt}{2}
+\renewcommand{\Gruppe}{G07}
+\renewcommand{\KleinGruppe}{A}
+\renewcommand{\Teilnehmer}{Krabbe, Epplee, Mönnich, Gresens}
+
+\begin{document}
+
+\section{}
+    
+\subsection{Grundlagen von Betriebssystemen}
+\begin{itemize}
+    \item a)
+        \subitem 1. Betriebssysteme als virtuelle Maschine: Abstraktion von Hardware-Details, Hardwareunabhängigkeit der Laufzeitumgebung
+        \subitem 2. Betriebssysteme als Betriebsmittelverwalter: Prozess- und Speicherverwaltung
+    \item b)
+        \subitem Sicht 1:
+        \subsubitem (1) Zuordnung von Betriebsmitteln zu einzelnen Prozessen
+        \subsubitem (2) Behandlung von Problemen und Konflikten bei Inanspruchnahme von Betriebsmitteln, u.a. Behandlung von Verklemmungs Verklemmungs- und Engpass Engpass-Situationen
+        \subitem Sicht 2:
+        \subsubitem (1) Zugrunde liegende Rechnerarchitektur vor dem Nutzer verbergen
+        \subsubitem (2) Details des Mehrbenutzerbetriebs verstecken
+    \item c)
+    \item d)
+\end{itemize}
+\subsection{Prozesse und Threads}
+\begin{itemize}
+    \item a)
+        \subitem Ein Programm ist eine Folge von Anweisungen und hat eine bestimmte Ziel-Pragmatik. Otfmals in einer bestimmten Programmiersprache geschrieben und in für einen Computer verständliche Befehle übersetzt.
+        \subitem Als Prozess wird ein Programm bezeichnet, das aktuell auf dem Betriebssystem ausgeführt wird. Besitzt einen eigenen Prozessadressraum der u.a. Programmcode, Konstanten und prozessspezifische Variablen enthält.
+        \subitem Die eigentliche Ausführung eines Prozess wird in kleineren Mini-Prozesse, s.g. Threads statt. Alle Threads eines Prozess teilen sich den gleichen Prozessadressraum, besitzen jedoch wegen ihrer Nebenläufigkeit einen eigenen Stack.
+    \item b)
+    \item c)
+    \item d)
+        \subitem X:= BEREIT: Der Prozess besitzt alle benötigten Betriebsmittel, wartet jedoch auf die Freigabe eines Prozessorkerns.
+        \subitem Y:= LAUFEND: Der Prozess ist aktuell einem Prozessorkern zugeordnet und läuft auf diesem ab.
+        \subitem Z:= WARTEND: Der Prozess wurde unterbrochen und wartet auf eine nicht-Prozessorkern-Ressource.
+        \subitem a:= (NEW nach X) Starten des Prozess \& Laden aller benötigten Betriebsmittel
+        \subitem b:= (X nach Y) Zuweisung von Prozessorkern(en)
+        \subitem c:= (Y nach Z) Benötigung eines momentan nicht verfügbaren Betriebsmittels
+        \subitem d:= (Z nach X) Zuteilung des Betriebsmittel
+        \subitem e:= (Y nach TERMINATED) Beenden des Prozess, Berechnung ist vollständig
+        \subitem f:= (Y nach X) Pausieren des Prozess
+\end{itemize}
+\subsection{n-Adressmaschine}
+\begin{itemize}
+    \item a) 2-Adress Maschine: 
+        Leseaufträge: 14, Schreibaufträge: 8 Berechnungszeit: ?
+        \begin{verbatim}
+        MOVE >a1< >H1<  H1:=a1
+        ADD  >a2< >H1<  H1:=a2 + H1
+        MOVE >a3> >H2<  H2:=a3
+        DIV  >H1< >H2<  H2:=H1 / H2
+        MOVE >b2< >H3<  H3:=b2
+        SUB  >b1< >H3<  H3:=b1 - H3
+        MOVE >b3> >H4<  H4:=b3
+        DIV  >H3< >H4<  H4:=H3 / H4
+        ADD  >H2< >H4<  H4:=H2 + H4
+        MOVE >H4< >R<   R:=H4
+        \end{verbatim}
+    \item b) 1-Adress-Maschine:
+        Leseaufträge: 14, Schreibaufträge: 8 Berechnungszeit: ?
+        \begin{verbatim}
+        LOAD >b1<      AC:=b1           AC=b1
+        SUB  >b2<      AC:=AC - b2      AC=b1 - b2
+        DIV  >b3<      AC:=AC / b3      AC=(b1 - b2) / b3
+        SAVE >H1<      H1:=AC       
+        LOAD >a1<      AC:=a1           AC=a1
+        ADD  >a2<      AC:=AC + a2      AC=a1 + a2
+        DIV  >a3<      AC:=AC / a3      AC=(a1 + a2) / a3
+        ADD  >H1<      AC:=AC + H1      AC=((a1 + a2) / a3) + ((b1 - b2) / b3)
+        SAVE >R<       R:=AC        
+        \end{verbatim}
+    \item c) 0-Adress-Maschine:
+        Leseaufträge: 6, Schreibaufträge: 1,  Berechnungszeit: ?
+        \begin{verbatim}
+        PUSH >a1<   ;a1;
+        PUSH >a2<   ;a1;a2;
+        ADD         :a1 + a2;
+        PUSH >a3<   ;a1 + a2;a3;
+        DIV         ;(a1 + a2) / a3;
+        PUSH >b1<   ;(a1 + a2) / a3;b1;
+        PUSH >b2<   ;(a1 + a2) / a3;b1;b2;
+        SUB         ;(a1 + a2) / a3;b1 - b2;
+        PUSH >b3<   ;(a1 + a2) / a3;b1 - b2;b3;
+        DIV         ;(a1 + a2) / a3;(b1 - b2) / b3;
+        ADD         ;((a1 + a2) / a3) + ((b1 - b2) / b3);
+        POP  >R<    ;
+        \end{verbatim}
+\end{itemize}
+\end{document}
