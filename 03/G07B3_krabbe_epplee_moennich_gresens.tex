@@ -50,6 +50,8 @@
 
             Man könnte beide Varianten von passwordCompare zwischen den Zeitmessungen mehrfach ausführen, um die Zeitunterschiede deutlicher zu machen.
         \item 2.
+            Eine Timing-Attack ist hier möglich, da in passwordCompare entweder sofort abgebrochen, oder eine naive for-Schleife ausgeführt wird.
+            Dies kann zu sehr unterschiedlichen Ausführungszeiten führen.
         \item 3.
             Zunächst versucht der Angreifer, die Länge des Passworts herauszufinden. 
         \item 4.
