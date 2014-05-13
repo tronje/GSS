@@ -1,25 +1,54 @@
 \documentclass[ngerman]{fbi-aufgabenblatt}
+\usepackage{minted}
 
 % Folgende Angaben bitte Anpassen !!!
 
 \renewcommand{\Aufgabenblatt}{3}
 \renewcommand{\Gruppe}{G07}
 \renewcommand{\KleinGruppe}{A}
-\renewcommand{\Teilnehmer}{Krabbe, Epplee, MÃ¶nnich, Gresens}
+\renewcommand{\Teilnehmer}{Krabbe, Epplee, Mönnich, Gresens}
 
 \begin{document}
 \section{Rechnersicherheit}
     \subsection{Zugangs- und Zugriffskontrolle}
         \begin{itemize}
             \item a)
-                \subitem Zungangskontrolle: BeschrÃ¤nkt, wer Ã¼berhaupt Zugang zu dem System hat. Z.B.: Username/Passwort-Abfrage auf bei der Anmeldung auf einem Server.
-                \subitem Zugriffskontrolle: BeschrÃ¤nkt, auf was genau im System der User Zugriff hat, nachdem ihm Zugang gewÃ¤hrt wurde.
+                \subitem Zungangskontrolle: Beschränkt, wer überhaupt Zugang zu dem System hat. Z.B.: Username/Passwort-Abfrage auf bei der Anmeldung auf einem Server.
+                \subitem Zugriffskontrolle: Beschränkt, auf was genau im System der User Zugriff hat, nachdem ihm Zugang gewährt wurde.
             \item b)
-                Dies wÃ¼rde implizieren, dass man dem User vertraut, was grober FahrlÃ¤ssigkeit entspricht. ;-) \\
+                Dies würde implizieren, dass man dem User vertraut, was grober Fahrlässigkeit entspricht. ;-) \\
             \item c)
-                Man kann die Zugriffsrechte eines Users nicht Ã¼berprÃ¼fen/durchsetzen, wenn man ihn nicht vorher identifiziert hat.
+                Man kann die Zugriffsrechte eines Users nicht überprüfen/durchsetzen, wenn man ihn nicht vorher identifiziert hat.
             \item d)
-                Die Zugangskontrolle besteht darin, dass nicht jeder den Link kennt. Die Kenntnis des Links gewÃ¤hrt also Zugang, und Zugriff wird nicht weiter kontrolliert, da Ã¼ber den Link ja sowieso nur ein Ordner bereitgestellt wird.
-                
+                Die Zugangskontrolle besteht darin, dass nicht jeder den Link kennt. Die Kenntnis des Links gewährt also Zugang, und Zugriff wird nicht weiter kontrolliert, da über den Link ja sowieso nur ein Ordner bereitgestellt wird.
         \end{itemize}
+
+\section{Timing-Attack}
+    \begin{itemize}
+        \item 1.
+            \begin{minted}{java}
+                boolean isTimingAttackPossible()
+                {
+                    char[] pass1 = ['h','a','s','e'];
+                    char[] pass2 = ['t','i','g','e','r','e','n','t','e'];
+
+                    int t1 = System.nanoTime();
+                    passwordCompare(pass1, pass1);
+                    int t2 = System.nanoTime();
+
+                    int result1 = math.abs(t1 - t2);
+
+                    t1 = System.nanoTime();
+                    passwordCompare(pass1, pass2);
+                    t2 = System.nanoTime();
+
+                    int result2 = math.abs(t1 - t2);
+
+                    return result1 == result2;
+                }
+            \end{minted}
+        \item 2.
+        \item 3.
+        \item 4.
+    \end{itemize}
 \end{document}
