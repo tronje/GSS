@@ -20,7 +20,7 @@
             \item c)
                 Man kann die Zugriffsrechte eines Users nicht überprüfen/durchsetzen, wenn man ihn nicht vorher identifiziert hat. Um einen User zu identifizieren, benötigt man mindestens Zugangskontrolle.
             \item d)
-                Die Zugangskontrolle besteht darin, dass nicht jeder den Link kennt. Die Kenntnis des Links gewährt also Zugang, und Zugriff wird nicht weiter kontrolliert, da über den Link ja sowieso nur ein Ordner bereitgestellt wird.
+                Es wird hier von einer Zugriffskontrolle auf \textit{Order-Ebene} geredet. Das bedeutet, dass für bestimmte Ordner die Zugriffskontrolle \textit{aufgehoben} wird. Diese Ordner sind dann öffentlich zugänglich. Ordner, die nicht freigegeben sind, sind weiterhin nur für eingeloggte Benutzer sichtbar, die Zugangskontrolle ist also weiterhin aktiv und es gilt das Statement aus aufgabe c).
         \end{itemize}
 
 \section{Timing-Attack}
@@ -47,8 +47,11 @@
                     return result1 == result2;
                 }
             \end{minted}
+
+            Man könnte beide Varianten von passwordCompare zwischen den Zeitmessungen mehrfach ausführen, um die Zeitunterschiede deutlicher zu machen.
         \item 2.
         \item 3.
+            Zunächst versucht der Angreifer, die Länge des Passworts herauszufinden. 
         \item 4.
     \end{itemize}
 \end{document}
