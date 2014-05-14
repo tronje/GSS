@@ -23,6 +23,29 @@
                 Es wird hier von einer Zugriffskontrolle auf \textit{Ordner-Ebene} geredet. Das bedeutet, dass für bestimmte Ordner die Zugriffskontrolle \textit{aufgehoben} wird. Diese Ordner sind dann öffentlich zugänglich. Ordner, die nicht freigegeben sind, sind weiterhin nur für eingeloggte Benutzer sichtbar, die Zugangskontrolle ist also weiterhin aktiv und es gilt das Statement aus aufgabe c).
         \end{itemize}
 
+    \subsection{Biometrische Techniken: EasyPASS}
+        \begin{itemize}
+            \item a)
+            \item b)
+                \subitem Webcam: kann manipuliert werden und fremdes Bild übermitteln.
+        \end{itemize}
+
+    \subsection{Tippverhalten}
+        \begin{itemize}
+            \item a) Der Angreifer kann den Benutzer dazu bringen den
+                Authentifizierungs-Satz auf einer eigenen Website einzugeben, um
+                so das Tippverhalten mitzuschneiden. Dies kann er dann benutzen
+                um sich zu authentifizieren. 
+            \item b) Eine Gegenmaßnahme könnte sein für jeden Benutzer einen
+                zufälligen Authentifizierungs-Satz zu wählen, der dem Angreifer
+                nicht bekannt ist.
+        \end{itemize}
+
+        \subsection{Realisierung eines Online Tickets}
+        \begin{itemize}
+            \item
+        \end{itemize}
+
 \section{Timing-Attack}
     \begin{itemize}
         \item 1.
@@ -50,12 +73,36 @@
 
             Man könnte beide Varianten von passwordCompare zwischen den Zeitmessungen mehrfach ausführen, um die Zeitunterschiede deutlicher zu machen.
         \item 2.
-            Eine Timing-Attack ist hier möglich, da in passwordCompare entweder sofort abgebrochen, oder eine naive for-Schleife ausgeführt wird.
-            Dies kann zu sehr unterschiedlichen Ausführungszeiten führen.
+            Eine Timing-Attack ist hier möglich, da in passwordCompare entweder
+            sofort abgebrochen, oder eine naive for-Schleife ausgeführt wird,
+            welche stoppt sobald ein Zeichen nicht übereinstimmt.
+            Dies kann zu sehr unterschiedlichen Ausführungszeiten führen.         
         \item 3.
             Zunächst versucht der Angreifer, die Länge des Passworts herauszufinden. Hierfür probiert er der Reihe nach Passwörter verschiedener Länge (und mit beliebigem Inhalt) aus: \texttt{a, aa, aaa, aaaa} etc. Dabei sollten alle Passwörter bis auf eines gleich lang brauchen. Das eine Passwort, das länger braucht (da das Programm nicht sofort abbricht, sondern beginnt, die Passwörter Zeichen für Zeichen zu vergleichen), hat die richtige Länge.
 
             Nun beginnt der Angreifer, das erste Zeichen des Passwortes zu knacken. Hierfür probiert er Passwörter mit der richtigen Länge aus und ändert dabei immer das erste Zeichen, z.B. (bei einer Länge von 4) \texttt{aaaa, baaa, caaa, daaa} etc. Auch hier wird wieder ein Passwort länger brauchen als die anderen, da das Programm das erste Zeichen dieses Passwortes als richtig ansieht und noch (mindestens) das zweite Zeichen vergleicht. So kann der Angreifer sicher sein, dass das erste Zeichen dieses Passwortes das richtige ist und wendet nun die gleiche Methode auf das zweite Zeichen an. Nachdem er jedes Zeichen geknackt hat, besitzt der Angreifer das korrekte Passwort.
+            
         \item 4.
+            \begin{minted}{java}
+                // b ist die Benutzereingabe!
+                boolean passwordCompare(char[] a, char[] b) 
+                {
+                    int e;
+                    int timefake;
+                    boolean correctLength = if(a.length == b.length);
+                    for (i=0; i < a.length; i++)
+                    {
+                        if (correctLength && a[i] == b[i])
+                        {
+                            e++;
+                        } elseif (a[i] == a[i]) 
+                        {
+                            timefake++;
+                        }
+                    }
+                    return  i == a.length ;
+
+                \end{minted}
+
     \end{itemize}
 \end{document}
