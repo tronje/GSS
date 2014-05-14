@@ -24,7 +24,18 @@
         \subsubitem (1) Zugrunde liegende Rechnerarchitektur vor dem Nutzer verbergen
         \subsubitem (2) Details des Mehrbenutzerbetriebs verstecken
     \item c)
+        \subitem monolisthisch
+            \subsubitem schnellerer Zugriff
+            \subsubitem unübersichtlich unstrukturiert
+        \subitem hirachisch
+            \subsubitem strukturierter
+            \subsubitem sicherer
+            \subsubitem nicht so gute perfomance
     \item d)
+        \subitem Netwerk
+            \subsubtitem hohe Verteilung-Transparenz
+        \subitem Verteilt
+            \subsubtitem keine/geringe Verteilungs-Transparenz
 \end{itemize}
 \subsection{Prozesse und Threads}
 \begin{itemize}
@@ -32,15 +43,20 @@
         \subitem Ein Programm ist eine Folge von Anweisungen und hat eine bestimmte Ziel-Pragmatik. Otfmals in einer bestimmten Programmiersprache geschrieben und in für einen Computer verständliche Befehle übersetzt.
         \subitem Als Prozess wird ein Programm bezeichnet, das aktuell auf dem Betriebssystem ausgeführt wird. Besitzt einen eigenen Prozessadressraum der u.a. Programmcode, Konstanten und prozessspezifische Variablen enthält.
         \subitem Die eigentliche Ausführung eines Prozess wird in kleineren Mini-Prozesse, s.g. Threads statt. Alle Threads eines Prozess teilen sich den gleichen Prozessadressraum, besitzen jedoch wegen ihrer Nebenläufigkeit einen eigenen Stack.
-    \item b)
+    \item b) 
+        \subitem Zufgriff auf selbe Betriebsmittelkönnen zu komplikationen führen.
+        \subitem => Deadlock
     \item c)
+        \subitem z.B Benutzeroberfläche aktualisieren
+        \subitem können auf den selben Speicher zugreifen und so einfacher kommunizieren
+        \subitem Ressourcen sparender
     \item d)
         \subitem X:= BEREIT: Der Prozess besitzt alle benötigten Betriebsmittel, wartet jedoch auf die Freigabe eines Prozessorkerns.
         \subitem Y:= LAUFEND: Der Prozess ist aktuell einem Prozessorkern zugeordnet und läuft auf diesem ab.
         \subitem Z:= WARTEND: Der Prozess wurde unterbrochen und wartet auf eine nicht-Prozessorkern-Ressource.
         \subitem a:= (NEW nach X) Starten des Prozess \& Laden aller benötigten Betriebsmittel
         \subitem b:= (X nach Y) Zuweisung von Prozessorkern(en)
-        \subitem c:= (Y nach Z) Benötigung eines momentan nicht verfügbaren Betriebsmittels
+        \subitem c:= (Y nach Z) Benötigung eines momentan nicht verfügbaren Betriebsmittels (I/O)
         \subitem d:= (Z nach X) Zuteilung des Betriebsmittel
         \subitem e:= (Y nach TERMINATED) Beenden des Prozess, Berechnung ist vollständig
         \subitem f:= (Y nach X) Pausieren des Prozess
@@ -48,7 +64,7 @@
 \subsection{n-Adressmaschine}
 \begin{itemize}
     \item a) 2-Adress Maschine: 
-        Leseaufträge: 14, Schreibaufträge: 8 Berechnungszeit: ?
+        Leseaufträge: 15, Schreibaufträge: 10 Berechnungszeit: 25,5
         \begin{verbatim}
         MOVE >a1< >H1<  H1:=a1
         ADD  >a2< >H1<  H1:=a2 + H1
@@ -62,10 +78,11 @@
         MOVE >H4< >R<   R:=H4
         \end{verbatim}
     \item b) 1-Adress-Maschine:
-        Leseaufträge: 14, Schreibaufträge: 8 Berechnungszeit: ?
+        Leseaufträge: 9, Schreibaufträge: 4 Berechnungszeit: 13,65
+        Vertauscht!:
         \begin{verbatim}
-        LOAD >b1<      AC:=b1           AC=b1
-        SUB  >b2<      AC:=AC - b2      AC=b1 - b2
+        LOAD >b2<      AC:=b2           AC=b2
+        SUB  >b1<      AC:=b2 - AC      AC=b1 - b2
         DIV  >b3<      AC:=AC / b3      AC=(b1 - b2) / b3
         SAVE >H1<      H1:=AC       
         LOAD >a1<      AC:=a1           AC=a1
@@ -75,7 +92,7 @@
         SAVE >R<       R:=AC        
         \end{verbatim}
     \item c) 0-Adress-Maschine:
-        Leseaufträge: 6, Schreibaufträge: 1,  Berechnungszeit: ?
+        Leseaufträge: 6, Schreibaufträge: 1,  Berechnungszeit: 7,6
         \begin{verbatim}
         PUSH >a1<   ;a1;
         PUSH >a2<   ;a1;a2;
