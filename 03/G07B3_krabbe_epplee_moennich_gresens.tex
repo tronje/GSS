@@ -25,7 +25,9 @@
 
     \subsection{Biometrische Techniken: EasyPASS}
         \begin{itemize}
-            \item a)
+            \item a) Lesegeräte können gefälscht werden. per Challange Response
+                verfahren wird verhindert, dass fremde Lesegeräte die Daten
+                auslesen?
             \item b)
                 \subitem Webcam: kann manipuliert werden und fremdes Bild übermitteln.
         \end{itemize}
@@ -36,14 +38,44 @@
                 Authentifizierungs-Satz auf einer eigenen Website einzugeben, um
                 so das Tippverhalten mitzuschneiden. Dies kann er dann benutzen
                 um sich zu authentifizieren. 
+                \subitem Angreifermodell:
+                    \subsubitem Angreifer versucht Tippverhalten zu imitieren
+                    \subsubitem Benutzername ist bekannt
+                    \subsubitem Rolle: Außenstehender
+                    \subsubitem Verbreitung: hat keine Zugriff auf die Datenbank
+                    \subsubitem gespeicherter Tippverhalten
+                    \subsubitem Kein Zugriff auf den Rechner des Nutzers
+                    \subsubitem Verhalten: aktiv (seine Login-Versuche sind bemerkbar)
             \item b) Eine Gegenmaßnahme könnte sein für jeden Benutzer einen
                 zufälligen Authentifizierungs-Satz zu wählen, der dem Angreifer
-                nicht bekannt ist.
+                nicht bekannt ist. (Nicht so sicher, da das Tippmuster gleich
+                bleibt)
+                \subitem Account-Sperre
+                \subitem IP-Blockade
+                \subitem Multi-Faktor-Authentifizierung
         \end{itemize}
 
         \subsection{Realisierung eines Online Tickets}
         \begin{itemize}
             \item
+                \subitem a)
+                \subsubitem Zufälligen Identifikationscode im Strichcode speichern,
+                Identifikationscode mit der Datenbank abgleichen
+                \subsubitem Signierte Daten im Strichcode speichern
+                \subsubitem MAC
+                \subitem b)
+                Angreifermodell :
+                \subsubitem Rolle außenstehender, Kinobesucher
+                \subsubitem Verbreitung Angreifer hat keinen Zugriff auf Computer des Besuchers
+                \subsubitem Angreifer bekommt ausgedrucktes Ticket nicht zu sehen
+                \subsubitem Angreifer kann Übertragungsstrecke abhören
+                \subsubitem Rechenkapazität
+                \subsubitem SSL nicht berechenbar für den Angreifer
+                \subsubitem Angreifer kann Zufallszahlen nicht erraten
+                \subsubitem Verhalten: Aktiv
+                \subsubitem Angreifer kann Strichcodes verfälschen
+                \subsubitem Angreifer kann Tickets doppelt ausdrucken
+            
         \end{itemize}
 
 \section{Timing-Attack}
@@ -108,9 +140,10 @@
 
     \section{Real-World-Brute-Force Angriff}
     Bei Testversuchen kam in dem Zeichenvorrat kein B, I, O und U vor. Dies kann
-    aber auch an der geringen anzahl an Testversuchen (20) liegen.
+    aber auch an der geringen Anzahl an Testversuchen (20) liegen.
     Bei 26 Buchstaben und 10 Ziffern wären unser Zwichenvorrat 36 Zeichen groß.
-    mit 36 Zeichen der Länge 20 gäbe es 13367494538843734067838845976576 verschiedene
+    mit 36 Zeichen der Länge 20 gäbe es $36^20 =
+    13367494538843734067838845976576$ verschiedene
     Kombinationen. Bei 1000 Versuchen pro Sekunden würde es
     423880470000000000000 Jahre
     dauern um alle Kombinationen durchzuprobieren. Selbst mit geringerem
