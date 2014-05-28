@@ -1,0 +1,287 @@
+\documentclass[ngerman,parskip=half]{scrartcl}
+
+\usepackage[latin1]{inputenc}
+\usepackage{blockgraph}
+
+\title{Verwendung von \texttt{blockgraph}}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Aufgabe 1a}
+Scheduling-Strategie: Beste Bediengüte
+
+\begin{blockgraph}{28}{1}{0.4}
+	\bglabelxx{0}
+	\bglabelxx{5}
+	\bglabelxx{10}
+	\bglabelxx{15}
+	\bglabelxx{20}
+	\bglabelxx{25}
+
+	\bgemptysingleblock{0}
+	\bgblock{1}{7}{$P_1$}
+	\bgemptysingleblock{7}
+	\bgblock{8}{10}{$P_4$}
+	\bgemptysingleblock{10}
+	\bgblock{11}{19}{$P_5$}
+	\bgemptysingleblock{19}
+	\bgblock{20}{25}{$P_2$}
+	\bgemptysingleblock{25}
+	\bgblock{26}{27}{$P_3$}
+\end{blockgraph}
+
+\section*{Aufgabe 1b}
+Scheduling-Strategie: Round Robin $\Delta t = 2$
+
+\begin{blockgraph}{32}{1}{0.4}
+\bglabelxx{0}
+\bglabelxx{5}
+\bglabelxx{10}
+\bglabelxx{15}
+\bglabelxx{20}
+\bglabelxx{25}
+\bglabelxx{30}
+
+\bgemptysingleblock{0}
+\bgblock{1}{3}{$P_1$}
+\bgblock{3}{5}{$P_1$}
+\bgemptysingleblock{5}
+\bgblock{6}{8}{$P_2$}
+\bgemptysingleblock{8}
+\bgblock{9}{11}{$P_1$}
+\bgemptysingleblock{11}
+\bgblock{12}{13}{$P_3$}
+\bgemptysingleblock{13}
+\bgblock{14}{16}{$P_4$}
+\bgemptysingleblock{16}
+\bgblock{17}{19}{$P_2$}
+\bgemptysingleblock{19}
+\bgblock{20}{22}{$P_5$}
+\bgemptysingleblock{22}
+\bgblock{23}{24}{$P_2$}
+\bgemptysingleblock{24}
+\bgblock{25}{27}{$P_5$}
+\bgblock{27}{29}{$P_5$}
+\bgblock{29}{31}{$P_5$}
+\end{blockgraph}
+
+\section*{Aufgabe 1c}
+Scheduling-Strategie: Round Robin $\Delta t = 4$
+
+\begin{blockgraph}{31}{1}{0.4}
+\bglabelxx{0}
+\bglabelxx{5}
+\bglabelxx{10}
+\bglabelxx{15}
+\bglabelxx{20}
+\bglabelxx{25}
+\bglabelxx{30}
+
+\bgemptysingleblock{0}
+\bgblock{1}{5}{$P_1$}
+\bgemptysingleblock{5}
+\bgblock{6}{10}{$P_2$}
+\bgemptysingleblock{10}
+\bgblock{11}{13}{$P_1$}
+\bgemptysingleblock{13}
+\bgblock{14}{15}{$P_3$}
+\bgemptysingleblock{15}
+\bgblock{16}{18}{$P_4$}
+\bgemptysingleblock{18}
+\bgblock{19}{23}{$P_5$}
+\bgemptysingleblock{23}
+\bgblock{24}{25}{$P_2$}
+\bgemptysingleblock{25}
+\bgblock{26}{30}{$P_5$}
+\end{blockgraph}
+
+\section*{Aufgabe 1d}
+Antwortzeiten der Prozesse
+\begin{center}
+\begin{tabular}{l c c c c c c}
+Aufgabe & $P_1$ & $P_2$ & $P_3$ & $P_4$ & $P_5$ & $\O{}$\\
+\hline
+1a & $6$ & $20$ & $21$ & $3$ & $10$ & $\frac{60}{5} = 12$\smallskip\\
+1b & $10$ & $19$ & $7$ & $9$ & $22$ & $\frac{67}{5} = 13,4$\smallskip\\
+1c & $12$ & $20$ & $9$ & $11$ & $21$ & $\frac{73}{5} = 14,6$
+\end{tabular}
+\end{center}
+
+\section*{Aufgabe 2a}
+Wenn die Deadlines aller Aufträge auf unbeschränkte Zeit eingehalten werden könnten, so muss es ein Zeit-Intervall geben, das (1) genau so lang ist, dass es ganzzahlig durch die Periodendauer aller Aufträge teilbar ist und (2) genug Platz für die Summe der  benötigten Bedienzeiten der Aufträge im Intervall bietet.
+\begin{center}
+Länge des Intervalls: $kgV(4;7;3) = 4 * 7 * 3 = 84$\bigskip\\
+\begin{tabular}{l c c c}
+Aufgabe & Anz. Perioden & & Benötigte Bedienzeit\\\hline
+$A_1:$ & $84 : 4 = 21$ & $\rightarrow$ & $28 * 1 = 28$\\
+$A_2:$ & $84 : 7 = 12$ & $\rightarrow$ & $21 * 1 = 21$\\
+$A_3:$ & $84 : 3 = 28$ & $\rightarrow$ & $12 * 3 = 36$
+\end{tabular}\bigskip\\
+Gesamte benötigte Bedienzeit: $28 + 21 + 36 = 85$
+\end{center}
+Da insgesamt mehr Bedienzeit benötigt wird als im Intervall verfügbar ist, können die Deadlines selbst von einem idealen Scheduler nicht eingehalten werden.
+
+\section*{Aufgabe 2b i}
+
+\begin{blockgraph}{25}{5}{0.4}
+\bglabelxx{0}
+\bglabelxx{5}
+\bglabelxx{10}
+\bglabelxx{15}
+\bglabelxx{20}
+
+\bglabely{4}{$B_4$}
+\bgblock[4]{0}{4}{}
+\bgblock[4]{4}{8}{}
+\bgblock[4]{8}{12}{}
+\bgblock[4]{12}{16}{}
+\bgblock[4]{16}{20}{}
+\bgblock[4]{20}{24}{}
+\bgblock[4]{24}{25}{}
+
+\bglabely{3}{$B_1$}
+\bgblock[3]{0}{7}{}
+\bgblock[3]{7}{14}{}
+\bgblock[3]{14}{21}{}
+\bgblock[3]{21}{25}{}
+
+\bglabely{2}{$B_3$}
+\bgblock[2]{0}{9}{}
+\bgblock[2]{9}{18}{}
+\bgblock[2]{18}{25}{}
+
+\bglabely{1}{$B_2$}
+\bgblock[1]{0}{11}{}
+\bgblock[1]{11}{22}{}
+\bgblock[1]{22}{25}{}
+
+\bglabely{0}{CPU}
+\bgblock[0]{0}{1}{$B_4$}
+\bgblock[0]{1}{4}{$B_1$}
+\bgblock[0]{4}{5}{$B_4$}
+\bgblock[0]{5}{7}{$B_3$}
+\bgblock[0]{7}{8}{$B_2$}
+\bgblock[0]{8}{9}{$B_4$}
+\bgblock[0]{9}{12}{$B_1$}
+\bgblock[0]{12}{13}{$B_4$}
+\bgblock[0]{13}{15}{$B_3$}
+\bgblock[0]{15}{16}{$B_2$}
+\bgblock[0]{16}{17}{$B_4$}
+\bgblock[0]{17}{20}{$B_1$}
+\bgblock[0]{20}{21}{$B_4$}
+\bgblock[0]{21}{24}{$B_1$}
+\bgblock[0]{24}{25}{$B_4$}
+\end{blockgraph}
+
+Die ersten vier Zeilen visualisieren die Periodendauer der einzelnen Aufträge.
+
+\section*{Aufgabe 2c}
+
+\begin{blockgraph}{15}{4}{0.4}
+\bglabelxx{0}
+\bglabelxx{5}
+\bglabelxx{10}
+
+\bglabely{0}{CPU 0}
+\bgblock[0]{0}{4}{$P_1$}
+\bgblock[0]{4}{5}{$P_2$}
+\bgblock[0]{5}{10}{$P_6$}
+\bgblock[0]{10}{14}{$P_7$}
+
+\bglabely{1}{CPU 1}
+\bgblock[1]{2}{7}{$P_3$}
+\bgblock[1]{7}{11}{$P_2$}
+
+\bglabely{2}{CPU 2}
+\bgblock[2]{2}{3}{$P_2$}
+\bgblock[2]{3}{11}{$P_5$}
+
+\bglabely{3}{CPU 3}
+\bgblock[3]{3}{11}{$P_4$}
+\end{blockgraph}\\
+Da die Aufgabenstellung etwas schwammig formuliert war, haben wir angenommen, dass eine kleinere Zahl in der Priorität-Zeile eine höhere Priorität bedeutet, so hat zum Beispiel $P_3$ eine höhere Priorität als $P_2$.
+
+\section*{Aufgabe 3a}
+Aus Gründen der Darstellung sind sämtliche Werte durch 5 dividiert.
+Dies führt zu folgender Tabelle:
+\begin{center}
+\begin{tabular}{l c c c}
+Auftrag & $M$ & $B$ & $Z$\\\hline
+Periodendauer $p_i$ & $23$ & $8$ & $12$\\
+Bedienzeit $b_i$ & $6$ & $2$ & $4$
+\end{tabular}
+\end{center}
+und der Darstellung im Intervall $[0,34]$ mit $Prio(B) > Prio(Z) > Prio(M)$.\\
+\begin{blockgraph}{34}{5}{0.4}
+\bglabelxx{0}
+\bglabelxx{5}
+\bglabelxx{10}
+\bglabelxx{15}
+\bglabelxx{20}
+\bglabelxx{25}
+\bglabelxx{30}
+\bglabelxx{34}
+
+\bglabely{4}{M}
+\bgblock[4]{0}{6}{}
+% \bgemptyblock[4]{6}{23}
+\bgblock[4]{23}{29}{}
+% \bgemptyblock[4]{29}{34}
+
+\bglabely{3}{Z}
+\bgblock[3]{0}{4}{}
+% \bgemptyblock[3]{0}{4}
+\bgblock[3]{12}{16}{}
+% \bgemptyblock[3]{12}{16}
+\bgblock[3]{24}{28}{}
+% \bgemptyblock[3]{24}{28}
+
+\bglabely{2}{B}
+\bgblock[2]{0}{2}{}
+% \bgemptyblock[2]{0}{2}
+\bgblock[2]{8}{10}{}
+% \bgemptyblock[2]{8}{10}
+\bgblock[2]{16}{18}{}
+% \bgemptyblock[2]{16}{18}
+\bgblock[2]{24}{26}{}
+% \bgemptyblock[2]{24}{26}
+\bgblock[2]{32}{34}{}
+% \bgemptyblock[2]{32}{34}
+
+\bglabely{1}{Lock}
+\bgblock[1]{0}{2}{$B$}
+\bgemptyblock[1]{2}{6}
+\bgblock[1]{6}{12}{$M$}
+\bgblock[1]{12}{14}{$B$}
+\bgemptyblock[1]{14}{16}
+\bgblock[1]{16}{18}{$B$}
+\bgemptyblock[1]{18}{23}
+\bgblock[1]{23}{33}{$M$}
+\bgblock[1]{33}{34}{$B$}
+
+\bglabely{0}{CPU}
+\bgblock[0]{0}{2}{$B$}
+\bgblock[0]{2}{6}{$Z$}
+\bgblock[0]{6}{12}{$M$}
+\bgblock[0]{12}{14}{$B$}
+\bgblock[0]{14}{16}{$Z$}
+\bgblock[0]{16}{18}{$B$}
+\bgblock[0]{18}{20}{$Z$}
+\bgemptyblock[0]{20}{23}
+\bgblock[0]{23}{24}{$M$}
+\bgblock[0]{24}{28}{$Z$}
+\bgblock[0]{28}{33}{$M$}
+\bgblock[0]{33}{34}{$B$}
+\end{blockgraph}\\
+Zeitpunkt 12: B wird verzögert ausgeführt, da in $[6,12]$ M die Semaphore verwendet.\\
+Zeitpunkt 16: Z wird von B verdrängt.\\
+Zeitpunkt 24: M wird von Z verdrängt, Semaphore weiterhin gesperrt.\\
+Die letzte Verdrängung von M durch Z führt dazu, dass in $[24,32]$ Auftrag B seine Deadline nicht einhalten kann.
+
+\section*{Aufgabe 3b}
+Als Prioritätsinversion wird die unbeabsichtigte Umkehrung der Prioritäten bezeichnet: Auftrag B konnte Z nicht verdrängen, da die von B benötigte Semaphore noch von M verwendet wurde, sodass Z für eine kurze Zeit eine höhere Priorität als B hatte. 
+
+\end{document}
