@@ -1,0 +1,63 @@
+\documentclass[ngerman]{fbi-aufgabenblatt}
+% \usepackage{minted}
+
+% Folgende Angaben bitte Anpassen !!!
+
+\renewcommand{\Aufgabenblatt}{5}
+\renewcommand{\Gruppe}{G07}
+\renewcommand{\KleinGruppe}{A}
+\renewcommand{\Teilnehmer}{Krabbe, Epplee, Mönnich, Gresens}
+
+\begin{document}
+
+\section{Zentrale Begriffe der Kryptographie}
+	\subsection{Unterschiedliche Chiffren}
+		\begin{itemize}
+			\item Symmetrisches Kryptosystem
+			\begin{itemize}
+				\item Anz. d. Schlüssel: 1
+				\item Verwendung für Ver- und Entschlüsselung
+				\item Alle involvierten Personen müssen den Schlüssel geheimhalten
+			\end{itemize}
+
+			\item Asymmetrisches Kryptosystem
+			\begin{itemize}
+				\item Anz. d. Schlüssel: 2
+				\item Öffentlicher Schlüssel für die Verschlüsselung
+				\item Privater Schlüssel für die Entschlüsselung
+				\item Jede Person muss nur ihren eigenen privaten Schlüssel geheimhalten
+			\end{itemize}
+		\end{itemize}
+	\subsection{Hybride Kryptosysteme}
+	\subsubsection*{a)}
+	Je länger die Nachricht ist, desto uneffizienter ist die Ver- und Entschlüsselung, daher lohnt sich ab einer gewissen Länge der Nachricht der Wechsel auf hybrides Kryptosystem.
+	\subsubsection*{b)}
+	Alice erzeugt einen neuen symmetrischen Session-Key k und verschlüsselt mit diesem die Nachricht an Bob.
+	Dann verschlüsselt sie k assymmetrisch mit Bobs public key und schickt die verschlüsselte Nachricht und den verschlüsselten Schlüssel an Bob.
+	\subsubsection*{c)}
+	Die Nachricht setzt sich aus den symmetrisch verschlüsselten Nutzdaten (der eigentlichen Nachricht) und dem assymmetrisch verschlüsselten Session-Key zusammen
+
+\section{Parkhaus}
+	\subsection{Funktionsweise}
+	Die letzten 6 Ziffern des ersten Barcodes (von rechts) stehen umsotiert unten rechts: 1-> 5, 2-> 2, 3-> 6, 4-> 4, 5-> 1, 6-> 3
+	
+	\subsection{Sicherheitsanalyse}
+	\subsection{Umsetzung mit kryptographischen Techniken}
+
+
+\section{Authentifizierungsprotokolle}
+	\subsection{Verschlüsselte Passwort-Übermittlung}
+	\subsection{Authentifikationssystem auf Basis indeterministischer symmetrischer Verschlüsselung}
+	\subsection{Challenge-Response-Authentifizierung}
+	\subsection{Sichere Challenge-Response-Authentifizierung}
+
+\section{"Mensch ärgere Dich nicht" über das Telefon}
+	\subsection{Protokoll}
+	\subsection{Würfeln über Telefon}
+
+\section{RSA-Verfahren}
+	\subsection{Grundlagen}
+	\subsection{Anwendung}
+	\subsection{Sichere Implementierung}
+
+\end{document}
