@@ -39,16 +39,80 @@
 
 \section{Parkhaus}
 	\subsection{Funktionsweise}
-	Die letzten 6 Ziffern des ersten Barcodes (von rechts) stehen umsotiert unten rechts: 1-> 5, 2-> 2, 3-> 6, 4-> 4, 5-> 1, 6-> 3
+    Der dritte Barcode von Rechts ist immer derselbe.
+    Die zweite Zahl des zweiten Barcodes von rechts gibt die Uhrzeit der Ticketausstellung ins Sekunden an.
+    Die erste Zahl des rechten Barcodes gibt das Datum in Tagen ab dem
+    01.01.1994 an. Die Zweite Zahl ist eine fest gewählte Zahl, die sich je nach
+    Parkdeck P0/P2 um die letze Ziffer (..0/..1) unterscheidet. Die dritte Zahl
+    könnte ein Zufallswert oder Hash sein, der zur Identifikation des Tickets
+    dient
+	Diese Zahl steht umsortiert unten rechts: 1-> 5, 2-> 2, 3-> 6, 4-> 4, 5-> 1, 6-> 3
+
+    Beim Befahren des Parkhauses wird der aktuelle Zeitpunkt und eine ID per Barcode auf das Ticket gedruckt. 
+    Bei dem Bezahlvorgang wird der Barcode eingelesen und aus der Differenz des
+    aktuellen Zeitpunkts und des Ausgabezeitpunkts der Preis errechnet. Falls
+    sich links noch ein zusätzlicher Barcode befindet (z.B vom Kino oder
+    Geschäft) wird dieser in die Preisberechnung mit einbezogen. Nach dem
+    Bezahlvorgang wird ein weiter Barcode aufgedruckt, der das Ticket als
+    bezahlt verifiziert. 10 Minuten lang wird die ID des Tickets im
+    System abgespeichert um die Schranken bei Einwurf des Tickets mit dieser ID
+    zu öffnen. 
 	
 	\subsection{Sicherheitsanalyse}
-	\subsection{Umsetzung mit kryptographischen Techniken}
+    Der Barcode des Kinos ist immer derselbe, wodurch dieser einfach von einem
+    Angreifer auf ein bestehendes Ticket gedruckt werden kann. Auch der Barcode
+    für die Park-Konditionen ist sehr klein und somit einfach zu analysieren und
+    zu fälschen. 
+    Falls die letzten 6 Ziffern kein Hash sind, bzw. nicht aus dem
+    Ausgabezeitpunkt berechnet werden, kann sich der Angreifer ein
+    gültiges Ticket mit zuvor ausgedruckter ID (letzen 6 Ziffern) und
+    selbst definiertem Datum und Zeitpunkt selber drucken.
 
+    Angreifermodell:
+    \begin{itemize}
+        \item Rolle: Benutzer
+        \item Verbreitung: Ticketschalter, Mülleimer (weggeworfene Tickets) 
+        \item Verhalten: aktiv, er versucht aktiv eigene Tickets zu drucken,
+            bzw. vorhandene zu verändern um kostenlos die Schranken von innen
+            öffnen zu können
+        \item Rechenkapazität: beschränkt (Gebrauch eines normalen Computers und
+            eines Barcodedruckers)
+    \end{itemize}
+
+
+	\subsection{Umsetzung mit kryptographischen Techniken}
+       Um Betrug effektiv zu verhindern, sollten alle Daten, die von der
+       Ticketausgabe auf das Ticket gedruckt werden verschlüsselt sein. Dies
+       kann mit einem symmetrischen Verschlüsselungsverfahren (z.B AES)
+       geschehen, dessen Schlüssel nur der Ticketausgabe und dem Kassenautomaten
+       zugänglich sind.  Diese Schlüssel sollten sicher, von außen nicht
+       zugänglich auf den Systemen abgespeichert werden. Die Park-Konditionen
+       anderer Geschäfte sollten bevor sie auf das Ticket gedruckt werden,
+       asymmetrisch signiert werden (z.B RSA). In diesem Fall sollte der
+       Kassenautomat die öffentlichen Schlüssel aller berechtigter Geschäfte
+       speichern, um die Gültigkeit der Park-Konditionen zu verifizieren. Diese
+       Park-Konditionen sollten vor der Verschlüsselung mit der der ID des
+       Tickets kombiniert werden, damit die signierten Barcodes nicht einfach
+       kopiert werden können.
+       Die Gesamtgröße des Barcodes würde damit jedoch vervielfachen.
 
 \section{Authentifizierungsprotokolle}
 	\subsection{Verschlüsselte Passwort-Übermittlung}
+    Ein passiver Angreifer kann c empfangen und damit ohne Kenntnis des
+    Benutzernamen und des Passwortes sich gegenüber den Server authentifizieren.
+    Außerdem ist eine Man-in-the-Middle Attacke Möglich bei der ein aktiver
+    Angreifer sich als Server gegenüber dem Benutzer ausgibt und sich als
+    Benutzer gegenüber dem Server.
 	\subsection{Authentifikationssystem auf Basis indeterministischer symmetrischer Verschlüsselung}
+    Solange die Zufallszahl nicht verifiziert wird, z.B in einer zweiten
+    Nachricht $E_k(r)$ bringt diese keine weitere sicherheit, es wird zwar jedes
+    mal ein anderes $c$ verwendet, der Angreifer kann jedoch jedes dieser $c$
+    benutzen um sich zu verifizieren.
 	\subsection{Challenge-Response-Authentifizierung}
+    Es wird verhindert, dass ein passiver Angreifer die Authentifikation
+    mitschneidet und erneut benutzt. Jedoch kann sich ein aktiver Angreifer
+    zwischen Benutzer und Dienstanbieter schalten und somit als
+    Man-in-the-Middle die Komminikation abfangen.
 	\subsection{Sichere Challenge-Response-Authentifizierung}
 
 \section{"Mensch ärgere Dich nicht" über das Telefon}
