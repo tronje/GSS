@@ -16,15 +16,64 @@
 
 \section{Speicherverwaltung}
     \subsection{}
-        Bei einer virtuellen Adressgröße von 16 Bit ergibt sich ein virtueller Adressraum mit der Größe $2^16 = 65536$ Bit bzw. 8192 Byte. Da es 16 Seiten gibt, folgt daraus eine Seitengröße von $\frac{8192}{16} = 512$ Bytes bzw. Wörtern.
+        Bei einer virtuellen Adressgröße von 16 Bit ergibt sich ein virtueller
+        Adressraum mit der Größe $2^16 = 65536$ Bit. Mit der Word größe von 1
+        Bryte ergibt es $65536$ Byte. Da es 16 Seiten gibt, folgt daraus eine
+        Seitengröße von $\frac{65536}{16} = 4096$ Bytes.
 
     \subsection{}
-        Das Present/Absent-Bit gibt an, ob eine Seite aktuell im Hauptspeicher geladen ist. Es können also maximal so viele Seiten geladen sein, wie Platz im Hauptspeicher ist.
-        Da die Länge der physikalischen Adressen 15 Bit ist, kann man von einer Speichergröße von $2^{15}$, also 32768 Bit oder 4096 Byte ausgehen. Bei einer Seitengröße von 512 Bytes passen somit $\frac{4096}{512} = 8$ Seiten in den Hauptspeicher und es können maximal 8 Present/Absent-Bits gleichzeitig auf 1 gesetzt sein.
+        Das Present/Absent-Bit gibt an, ob eine Seite aktuell im Hauptspeicher
+        geladen ist. Es können also maximal so viele Seiten geladen sein, wie
+        Platz im Hauptspeicher ist.
+        Da die Länge der physikalischen Adressen 15 Bit ist, kann man von einer
+        Speichergröße von $2^{15}*8$Bit, also 32768 Byte ausgehen. Bei einer
+        Seitengröße von 4096 Bytes passen somit $\frac{32768}{4096} = 8$ Seiten
+        in den Hauptspeicher und es können maximal 8 Present/Absent-Bits
+        gleichzeitig auf 1 gesetzt sein.
     \subsection{}
+    0x5fe8: Ersten 4 Bit geben Adresse der Seite an.
+    Prüfung ob Seite Nr. 5 existiert und im Arbeitsspeicher liegt
+    (Present/Absent-Bit gesetzt).
+    Physikalsiche Adresse: 0x1fe8
+
     \subsection{}
+    
         Für kleinere Seiten spricht, dass bei speicherarmen Prozessen nicht viel Speicher für leere Seiten vergeudet wird. Ebenso bieten kleinere Seiten mehr Flexibilität bei der Seitenverdrängung: Wenn nur ein kleiner Teil Speicher gebraucht wird, müssen auch nur wenige Daten auf die Platte geschrieben werden.
 
         Für große Seiten bzw. gegen kleinere Seiten spricht der Overhead, den eine kleine Seitengröße verursacht: zum einen braucht man dann größere Seitentabellen und zum anderen muss man eventuell öfter Seiten im Speicher hin- und herschieben und hat eine höhere Fragmentierung des Speicherbereichs.
+    \subsection{}
+    p=4MB L=8 B s=?
+    Seitengröße: $\frac{p}{s} \cdot L$ 
+    Verschwendung: $V(s) = \frac{p}{s} \cdot L +  \frac{s}{2}$
+    $V'(s) = - \frac{p}{s^2} + \frac{1}{2} = 0$
+    $\rightarrow s = \sqrt{2pL}$
+    $= \sqrt{64 \cdot 2^{20}}B = 8 KiB$
 
+
+\section{}
+
+
+\section{Synchronisation}
+    \subsection{}
+    Semaphore w =1
+    int Num = 0
+    Semaphore Mutex =1
+    process Writer:
+        P(w)
+        modifyData
+        V(w)
+
+
+    processReader
+        P(Mutex)
+        Num++
+        if(Num == 1)
+            P(w)
+
+        readData
+
+        if(Num == 1)
+            V(w)
+        Num --
+        V(Mutex)
 \end{document}
