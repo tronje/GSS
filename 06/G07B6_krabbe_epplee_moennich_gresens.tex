@@ -1,0 +1,30 @@
+% "strict" mode, meckert bei kleineren fehlern
+\RequirePackage[l2tabu, orthodox]{nag}
+
+\documentclass[ngerman]{fbi-aufgabenblatt}
+\usepackage{microtype}
+
+% Folgende Angaben bitte Anpassen !!!
+
+\renewcommand{\Aufgabenblatt}{6}
+\renewcommand{\Gruppe}{G07}
+\renewcommand{\KleinGruppe}{A}
+\renewcommand{\Teilnehmer}{Krabbe, Flunder, Epplee, Mönnich, Gresens}
+
+\begin{document}
+\emph{Disclaimer: Leider hatten wir diese Woche nicht besonders viel Zeit und haben daher nur einen kleinen Teil der Aufgaben fertig bekommen. Sorry!}
+
+\section{Speicherverwaltung}
+    \subsection{}
+        Bei einer virtuellen Adressgröße von 16 Bit ergibt sich ein virtueller Adressraum mit der Größe $2^16 = 65536$ Bit bzw. 8192 Byte. Da es 16 Seiten gibt, folgt daraus eine Seitengröße von $\frac{8192}{16} = 512$ Bytes bzw. Wörtern.
+
+    \subsection{}
+        Das Present/Absent-Bit gibt an, ob eine Seite aktuell im Hauptspeicher geladen ist. Es können also maximal so viele Seiten geladen sein, wie Platz im Hauptspeicher ist.
+        Da die Länge der physikalischen Adressen 15 Bit ist, kann man von einer Speichergröße von $2^{15}$, also 32768 Bit oder 4096 Byte ausgehen. Bei einer Seitengröße von 512 Bytes passen somit $\frac{4096}{512} = 8$ Seiten in den Hauptspeicher und es können maximal 8 Present/Absent-Bits gleichzeitig auf 1 gesetzt sein.
+    \subsection{}
+    \subsection{}
+        Für kleinere Seiten spricht, dass bei speicherarmen Prozessen nicht viel Speicher für leere Seiten vergeudet wird. Ebenso bieten kleinere Seiten mehr Flexibilität bei der Seitenverdrängung: Wenn nur ein kleiner Teil Speicher gebraucht wird, müssen auch nur wenige Daten auf die Platte geschrieben werden.
+
+        Für große Seiten bzw. gegen kleinere Seiten spricht der Overhead, den eine kleine Seitengröße verursacht: zum einen braucht man dann größere Seitentabellen und zum anderen muss man eventuell öfter Seiten im Speicher hin- und herschieben und hat eine höhere Fragmentierung des Speicherbereichs.
+
+\end{document}

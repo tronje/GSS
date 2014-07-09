@@ -6,7 +6,7 @@
 \renewcommand{\Aufgabenblatt}{5}
 \renewcommand{\Gruppe}{G07}
 \renewcommand{\KleinGruppe}{A}
-\renewcommand{\Teilnehmer}{Krabbe, Epplee, Mönnich, Gresens}
+\renewcommand{\Teilnehmer}{Krabbe, Flunder, Epplee, Mönnich, Gresens}
 
 \begin{document}
 
@@ -33,9 +33,9 @@
 	Je länger die Nachricht ist, desto uneffizienter ist die Ver- und Entschlüsselung, daher lohnt sich ab einer gewissen Länge der Nachricht der Wechsel auf hybrides Kryptosystem.
 	\subsubsection*{b)}
 	Alice erzeugt einen neuen symmetrischen Session-Key k und verschlüsselt mit diesem die Nachricht an Bob.
-	Dann verschlüsselt sie k assymmetrisch mit Bobs public key und schickt die verschlüsselte Nachricht und den verschlüsselten Schlüssel an Bob.
+	Dann verschlüsselt sie k assymmetrisch mit Bobs public key und schickt die verschlüsselte Nachricht und den verschlüsselten Schlüssel symmetrischen Schlüssel k an Bob.
 	\subsubsection*{c)}
-	Die Nachricht setzt sich aus den symmetrisch verschlüsselten Nutzdaten (der eigentlichen Nachricht) und dem assymmetrisch verschlüsselten Session-Key zusammen
+	Die Nachricht setzt sich aus den symmetrisch verschlüsselten Nutzdaten (der eigentlichen Nachricht) und dem assymmetrisch verschlüsselten Session-Key zusammen.
 
 \section{Parkhaus}
 	\subsection{Funktionsweise}
@@ -45,7 +45,7 @@
     01.01.1994 an. Die Zweite Zahl ist eine fest gewählte Zahl, die sich je nach
     Parkdeck P0/P2 um die letze Ziffer (..0/..1) unterscheidet. Die dritte Zahl
     könnte ein Zufallswert oder Hash sein, der zur Identifikation des Tickets
-    dient
+    dient.
 	Diese Zahl steht umsortiert unten rechts: 1-> 5, 2-> 2, 3-> 6, 4-> 4, 5-> 1, 6-> 3
 
     Beim Befahren des Parkhauses wird der aktuelle Zeitpunkt und eine ID per Barcode auf das Ticket gedruckt. 
@@ -98,8 +98,8 @@
 
 \section{Authentifizierungsprotokolle}
 	\subsection{Verschlüsselte Passwort-Übermittlung}
-    Ein passiver Angreifer kann c empfangen und damit ohne Kenntnis des
-    Benutzernamen und des Passwortes sich gegenüber den Server authentifizieren.
+    Ein passiver Angreifer kann c empfangen und sich damit ohne Kenntnis des
+    Benutzernamen und des Passwortes gegenüber den Server authentifizieren.
     Außerdem ist eine Man-in-the-Middle Attacke Möglich bei der ein aktiver
     Angreifer sich als Server gegenüber dem Benutzer ausgibt und sich als
     Benutzer gegenüber dem Server.
